@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Jacobs <ryan.mjacobs@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.1",
+    "serialport": "^5.0.0",
+    "ws": "^3.2.0"
+  }
+}

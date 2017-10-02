@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>webdemo</title>
+    </head>
+
+    <body>
+        <h1>webdemo</h1>
+
+        <button id="btn">led = 0</button>
+
+        <script>
+            /*
+               This JS code is embedded in the HTML document for simplicity's sake,
+               but if your code gets more complex, you can split them into
+               separate .js files and link them in with the <script> tag, e.g.
+              
+               <script src="somefile.js">...
+            */
+
+            // First, we create a websocket connection to our server.
+            // This will be our primary communication channel.
+            //
+            // So basically:
+            //   Web Client (e.g. Chrome)
+            //           --(websocket)-->
+            //       Node.js Server
+            //           --(USB Serial)-->
+            //       Arduino
+            let ws = new WebSocket("ws://" + window.location.hostname + ":8888");
+
+            // Then, we link our HTML button to a function. Every time a client
+            // clicks the button, it will call this function.
+            let btn_state = 0;
+            let btn = document.getElementById("btn");
+            btn.onclick = function() {
+                // toggle button state, 1->0 and 0->1
+                btn_state = (btn_state == 0) ? 1 : 0;
+
+                // set button text to match new state
+                btn.innerHTML = "led = " + btn_state;
+
+                // send a WS packet to the Node.js server
+                // (view app.js to see how the server processes the data)
+                ws.send(btn_state);
+            }
+        </script>
+    </body>
+</html>
