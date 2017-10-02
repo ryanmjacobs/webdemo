@@ -44,7 +44,7 @@ port.on("open", function() {
     console.log("serial_port opened...");
 });
 port.on("data", function(d) {
-    console.log("serial RX: ", d.toString("utf-8").trim());
+    console.log("serial RX: " + d.toString("utf-8").trim());
 });
 port.on("error", function(e) {
     console.log("serial error: ", e.message);
